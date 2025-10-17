@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWeb Terminal Retro - Juegos, Utilidades y Más</title>
+    <meta name="description" content="Terminal retro online con minijuegos como PyTrek, cifrados clásicos, ASCII art y más utilidades divertidas.">
+    <meta name="keywords" content="terminal retro, juegos online, ascii art, cifrado cesar, pytrek, hacker style">
+    <meta name="author" content="Oscar Gimenez Blasco">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mail.sabbat.cloud/">
+
+    <meta property="og:title" content="MyWeb Terminal Retro - Juegos y Utilidades">
+    <meta property="og:description" content="Explora juegos retro y utilidades hacker-style en tu navegador.">
+    <meta property="og:image" content="https://mail.sabbat.cloud/static/preview.png">
+    <meta property="og:url" content="https://mail.sabbat.cloud/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MyWeb Terminal Retro">
+    <meta name="twitter:description" content="Explora juegos retro, ascii art y cifrados.">
+    <meta name="twitter:image" content="https://mail.sabbat.cloud/static/preview.png">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="/static/css/mc.css">
+    <script src="{{ url_for('static', filename='js/typeit.min.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.2/math.min.js"></script>
+    <script src="{{ url_for('static', filename='js/tone-14.7.77.min.js') }}" defer></script>
+    <script> 
+	    window.CSRF_TOKEN = "{{ csrf_token }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+
+    <noscript>
+    <div class="fallback">
+    <h1>MyWeb Terminal Retro</h1>
+    <h2 class="sr-only">Terminal Retro Online con Juegos y Utilidades</h2>
+    <p>Explora minijuegos, cifrados clásicos y ASCII art en un entorno estilo terminal.</p>
+    <p>Activa JavaScript para usar la experiencia interactiva completa.</p>
+    <p>Visita mi perfil en <a href="https://github.com/Sabbat-cloud">GitHub</a>.</p>
+    </div>
+    </noscript>
+</head>
+<body>
+    <div id="terminal" class="crt">
+        <div id="static-content">
+            <pre id="ascii-art" class="hidden"></pre>
+            <span id="typewriter"></span>
+        </div>
+        <div id="interactive-content"></div>
+    </div>
+
+    <!-- --- NUEVO: Canvas para el efecto Matrix --- -->
+    <canvas id="matrix-canvas" class="hidden"></canvas>
+
+    <pre id="rabbit-animation" class="hidden">
+    (\_/)
+    ( . .)
+    / >🥕
+    </pre>
+
+    <div id="mouse-cursor"></div>
+</body>
+</html>

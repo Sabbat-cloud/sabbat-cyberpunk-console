@@ -1,0 +1,8 @@
+# robots.txt
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /sessions/
+Disallow: /venv/
+Disallow: /__pycache__/
+Sitemap: https://mail.sabbat.cloud/sitemap.xml

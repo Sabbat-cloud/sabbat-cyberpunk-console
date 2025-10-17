@@ -1,0 +1,14 @@
+Flask
+gunicorn
+python-chess
+ansi2html
+requests
+pexpect
+pyfiglet
+Flask-SQLAlchemy
+Flask-Login
+python-dotenv
+Flask-Session 
+redis
+qrcode[pil]==7.4.2
+Pillow>=10.0.0

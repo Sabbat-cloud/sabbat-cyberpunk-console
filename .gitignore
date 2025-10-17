@@ -1,0 +1,33 @@
+# Entorno virtual de Python
+venv/
+
+# Archivos compilados y caché de Python
+*.pyc
+__pycache__/
+
+# Fiheros de logs
+log.txt
+visitors.csv
+
+# Archivos de backup que mencionaste
+*.bak
+
+# Archivos de configuración de IDEs 
+.vscode/
+.idea/
+
+# Archivos de entorno 
+.env
+.flaskenv
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+#Otros directorios
+descargas/
+flask_session/
+instance/
+
+#Imagenes propias
+*.png

@@ -1,0 +1,275 @@
+/* style.css */
+:root {
+    --bg-color: #050505;
+    --text-color: #07ae07;
+    --glow-color: #33ff33;
+    --cursor-color: #69ff69;
+    --secondary-text-color: #00aa00;
+    --error-color: #aa0000;
+
+    /* Colores para los temas */
+    --amber-text-color: #FFBF00;
+    --amber-glow-color: #FFD700;
+    --amber-cursor-color: #FFA500;
+    --amber-secondary-text-color: #FF8C00;
+
+    --arctic-text-color: #00E5E5;
+    --arctic-glow-color: #72FFFF;
+    --arctic-cursor-color: #FFFFFF;
+    --arctic-secondary-text-color: #00B8B8;
+
+    --crt-intensity: 0.1; /* Intensidad base del parpadeo CRT */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Fira Mono', monospace;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 2rem;
+    overflow-x: hidden;
+    cursor: on;
+    #cursor: none; /* Oculta el cursor real del sistema */
+}
+
+.crt {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.crt::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.crt::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: var(--crt-intensity); }
+    20% { opacity: 1; }
+    80% { opacity: calc(var(--crt-intensity) * 2); }
+    100% { opacity: var(--crt-intensity); }
+}
+
+#typewriter, #ascii-art, #interactive-shell {
+    text-shadow: 0 0 2px var(--glow-color);
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+#ascii-art {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#typewriter a {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+#typewriter a:hover {
+    color: var(--glow-color);
+    background-color: var(--text-color);
+    text-shadow: none;
+}
+
+.ti-cursor {
+    color: var(--cursor-color);
+    font-weight: bold;
+    animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 0; }
+    49% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+.hidden {
+    display: none!important;
+}
+
+/* --- Estilos del Shell Interactivo --- */
+#interactive-shell {
+    margin-top: 1rem;
+}
+
+.command-input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: inherit;
+    text-shadow: inherit;
+    caret-color: var(--cursor-color);
+}
+
+.shell-line {
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.command-output {
+    margin-bottom: 1rem;
+}
+
+.command-output .directory {
+    color: var(--cursor-color);
+    font-weight: bold;
+}
+
+.command-output .executable {
+    color: var(--secondary-text-color);
+}
+
+/* Estilo para enlaces clicables en la salida */
+.command-output a {
+    color: var(--arctic-text-color); /* Un color que destaque */
+    text-decoration: underline;
+}
+.command-output a:hover {
+    background-color: var(--arctic-text-color);
+    color: var(--bg-color);
+}
+
+
+/* --- Estilos para la animación del conejo --- */
+#rabbit-animation {
+    position: fixed;
+    top: 50%;
+    left: -200px;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    white-space: pre;
+    line-height: 1;
+    z-index: 1000;
+    color: var(--text-color);
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+@keyframes runAndFade {
+    0% { left: -200px; opacity: 1; }
+    90% { left: 100vw; opacity: 1; }
+    100% { left: 110vw; opacity: 0; }
+}
+
+/* --- NUEVO: Estilos para el cursor falso y el canvas de Matrix --- */
+#mouse-cursor {
+    position: fixed;
+    width: 8px;
+    height: 16px;
+    background-color: var(--cursor-color);
+    box-shadow: 0 0 6px var(--glow-color);
+    opacity: 0.8;
+    pointer-events: none; /* El cursor no debe interferir con clics */
+    z-index: 10001; /* Asegura que esté por encima de otros elementos */
+    transition: transform 0.05s ease-out;
+    transform-origin: center center;
+}
+
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 9999;
+}
+
+/* --- NUEVO: Estilos para el visualizador de audio --- */
+.audio-visualizer {
+    font-family: 'Courier New', monospace;
+    white-space: pre;
+    color: var(--secondary-text-color);
+}
+
+
+/* --- Media Queries para Diseño Responsive --- */
+@media (max-width: 1024px) {
+    body { font-size: 1.1rem; padding: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+    body { font-size: 1rem; padding: 1rem; }
+    #ascii-art { font-size: 0.8rem; transform: scale(0.8); transform-origin: center top; margin-bottom: -2rem; }
+}
+/* --- Estilos para el tablero de ajedrez --- */
+.command-output pre {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0;
+    line-height: 1.4;
+}
+
+.command-output pre span {
+    letter-spacing: normal;
+}
+
+.calendar-today {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border-radius: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ========== Ajedrez retro ========== */
+.chess-board {
+	display: inline-block;
+	padding: 6px 8px;
+	border: 1px solid var(--secondary-text-color);
+	box-shadow: 0 0 10px color-mix(in srgb, var(--glow-color) 35%, transparent);
+	user-select: none;
+	font-family: 'Fira Mono', ui-monospace, monospace;
+	line-height: 1.15;
+	}
+.chess-head, .chess-foot {
+	text-align: center;
+	letter-spacing: 0.2ch;
+	color: var(--secondary-text-color);
+	opacity: .9;
+	}
+.chess-row { display: grid; grid-template-columns: auto repeat(8, 1.8ch) auto; align-items: center; }
+.chess-row .rank { color: var(--secondary-text-color); opacity: .9; padding: 0 .4ch; }
+.sq { display: inline-block; width: 1.8ch; text-align: center; }
+.sq-light { background: color-mix(in srgb, var(--bg-color) 80%, transparent); }
+.sq-dark { background: color-mix(in srgb, var(--text-color) 12%, var(--bg-color)); }
+.pw { color: var(--text-color); text-shadow: 0 0 4px var(--glow-color); }
+.pb { color: var(--arctic-text-color, var(--secondary-text-color)); opacity: .95; }
+.chess-turn { margin-top: .4rem; color: var(--secondary-text-color); }

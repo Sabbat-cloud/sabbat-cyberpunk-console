@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn instance to serve myweb
+After=network.target
+
+[Service]
+User=YOUR-USER
+Group=www-data
+WorkingDirectory=/var/www/myweb
+# --- Enviroment & exec ---
+Environment="PATH=/var/www/myweb/venv/bin:/usr/bin:/bin"
+Environment="OWM_API_KEY=YOUR-API-KEY"
+ExecStart=/var/www/myweb/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 --forwarded-allow-ips="*" wsgi:app
+
+[Install]
+WantedBy=multi-user.target
