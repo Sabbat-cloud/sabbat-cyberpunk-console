@@ -11,7 +11,16 @@ A retro cyberpunk web terminal built with **Flask** (backend) and a lightweight 
 ## ✨ Features
 * **Secure by default**: CSP/HSTS, hardened cookies, and optional rate limiting.
 * **Realistic Terminal Interface:** An interactive shell with command history, autocompletion (Tab), pipes (`|`), and output redirection (`>`).
-* **Virtual File System:** Navigate a simulated file system with commands like `ls`, `cd`, `cat`, `grep`, and `wc`.
+* **Virtual File System:** Navigate a simulated file system with commands like `ls`, `cd`, `cat`, `grep`, `wc`, etc...
+* **List of commands:**
+    * **- Basic:** `help [cmd]`, `about`, `links`, `resume`, `clear`, `reboot`, `date`, `whoami`, `pwd`, `uptime`, `nano`, `set lang`
+    * **- Portfolio:** `skills`, `projects [filter]`
+    * **- Filesystem:** `echo`, `ls`, `dir`, `cd`, `cat`, `type`, `grep`, `head`, `tail`, `wc`, `sort`, `uniq`, `copy`, `mc`
+    * **- System:** `history`, `sudo`, `uname`, `ver`, `version`, `neofetch`, `exit`, `ps`, `kill`
+    * **- Tools:** `calc`, `cal`, `weather`, `encrypt`, `decrypt`, `ascii`, `ping`, `traceroute`, `qr`, `base64`, `hash`
+    * **- Visuals & Fun:** `theme [name|random`], `theme-list`, `a11y`, `security`, `crt`, `hack`, `cowsay`, `fortune`, `go ask alice`, `matrix`, `play music`, `sl`
+    * **- Games & Lore:** `aventura/adventure`, `pytrek`, `firewall`, `missions`, `chess`, `nuclearwar`
+
 * **Integrated Games:**
     * **Chess:** Play a game of chess against a simple AI directly in the terminal.
     * **Global Thermonuclear War:** A strategic simulator inspired by the movie "WarGames".

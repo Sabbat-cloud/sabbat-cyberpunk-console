@@ -11,7 +11,17 @@ Consola web retro estilo **cyberpunk** con **Flask** (backend) y **JavaScript** 
 ## ✨ Características
 * **Segura por defecto**: CSP/HSTS, cookies endurecidas y *rate limiting* opcional.
 * **Interfaz de Terminal Realista:** Un shell interactivo con historial de comandos, autocompletado (Tab), tuberías (`|`) y redirección de salida (`>`).
-* **Sistema de Archivos Virtual:** Navega por un sistema de archivos simulado con comandos como `ls`, `cd`, `cat`, `grep` y `wc`.
+* **Sistema de Archivos Virtual:** Navega por un sistema de archivos simulado con comandos como `ls`, `cd`, `cat`, `grep`, `wc`, etc..
+
+* **Listado de comandos:**
+    * **- Basicos:** `help [cmd]`, `about`, `links`, `resume`, `clear`, `reboot`, `date`, `whoami`, `pwd`, `uptime`, `nano`, `set lang`
+    * **- Portfolio:** `skills`, `projects [filter]`
+    * **- Filesystem:** `echo`, `ls`, `dir`, `cd`, `cat`, `type`, `grep`, `head`, `tail`, `wc`, `sort`, `uniq`, `copy`, `mc`
+    * **- Sistema:** `history`, `sudo`, `uname`, `ver`, `version`, `neofetch`, `exit`, `ps`, `kill`
+    * **- Utilidades:** `calc`, `cal`, `weather`, `encrypt`, `decrypt`, `ascii`, `ping`, `traceroute`, `qr`, `base64`, `hash`
+    * **- Entorno visual y diversión:** `theme [name|random`], `theme-list`, `a11y`, `security`, `crt`, `hack`, `cowsay`, `fortune`, `go ask alice`, `matrix`, `play music`, `sl`
+    * **- Juegos y transfondo:** `aventura/adventure`, `pytrek`, `firewall`, `missions`, `chess`, `nuclearwar`
+
 * **Juegos Integrados:**
     * **Ajedrez:** Juega una partida de ajedrez contra una IA simple directamente en la terminal.
     * **Guerra Termonuclear Global:** Un simulador estratégico inspirado en la película "WarGames".
