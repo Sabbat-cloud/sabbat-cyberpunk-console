@@ -1,11 +1,31 @@
-/sabbat_cloud_terminal/
+/sabbat-cyberpunk-console
+├── LICENSE
+├── PyTrek (https://github.com/Python3-Training/PyTrek)
+│   
+├── README-ES.md
+├── README.md
 ├── app.py
+├── chess_engine.py
+├── myweb.service.example
+├── nuclearwar_engine.py
 ├── requirements.txt
-└── templates/
-│   └── index.html
-└── static/
-    ├── css/
-    │   └── style.css
-    └── js/
-        ├── script.js
-        └── typeit.min.js
+├── robots.txt
+├── sessions
+├── sitemap.xml
+├── static
+│   ├── css
+│   │   ├── mc.css
+│   │   └── style.css
+│   ├── data 
+│   │   └── world_coast_min.geojson
+│   └── js
+│       ├── csrf-init.js
+│       ├── script.js
+│       ├── tone-14.7.77.min.js
+│       └── typeit.min.js
+├── templates
+│   └── index.html
+├── tree.txt
+├── weather_cache.py
+├── wsgi.py
+└── xor_generator.py

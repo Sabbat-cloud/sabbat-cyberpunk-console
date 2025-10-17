@@ -1,15 +1,74 @@
 # app.py
-from flask import Flask, render_template, request, session
+from __future__ import annotations
+from flask import Flask, render_template, request, session, jsonify
 import csv
 import datetime as dt
 import re
-import os
+import os.path, logging
 import subprocess
 import requests
 import random
 from ansi2html import Ansi2HTMLConverter
 from dotenv import load_dotenv
 from flask_session import Session
+from werkzeug.middleware.proxy_fix import ProxyFix
+
+app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1)
+
+# --- Config ---
+app.config.update(
+        SECRET_KEY=os.environ.get("SECRET_KEY", os.urandom(32)),
+        SESSION_COOKIE_SECURE=True,
+        SESSION_COOKIE_HTTPONLY=True,
+        SESSION_COOKIE_SAMESITE="Lax",
+        MAX_CONTENT_LENGTH=4 * 1024 * 1024, # 4MB safety cap if you add uploads later
+)
+
+
+# --- Security headers ---
+try:
+    from flask_talisman import Talisman # pip install talisman
+    # Adjust CSP if you load external CDNs; prefer nonces over 'unsafe-inline'
+    csp = {
+        'default-src': "'self'",
+        'script-src': ["'self'"],
+        'style-src': ["'self'", "'unsafe-inline'"],
+        'img-src': ["'self'", 'data:'],
+        'connect-src': ["'self'"],
+        'frame-ancestors': "'none'",
+        'object-src': "'none'",
+    }
+    Talisman(app, content_security_policy=csp, force_https_permanent=True)
+except Exception:
+    @app.after_request
+    def add_headers(resp):
+        resp.headers.setdefault('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload')
+        resp.headers.setdefault('X-Content-Type-Options', 'nosniff')
+        resp.headers.setdefault('X-Frame-Options', 'DENY')
+        resp.headers.setdefault('Referrer-Policy', 'strict-origin-when-cross-origin')
+        resp.headers.setdefault('Permissions-Policy', 'geolocation=(), microphone=(), camera=()')
+        return resp
+
+
+# --- Rate limiting (optional but recommended) ---
+try:
+    from flask_limiter import Limiter
+    from flask_limiter.util import get_remote_address
+    limiter = Limiter(get_remote_address, app=app, default_limits=["60/minute"])
+except Exception:
+    limiter = None
+
+
+@app.get("/")
+def index():
+    return render_template("index.html")
+
+
+@app.get("/healthz")
+@ (limiter.limit("10/minute") if limiter else (lambda f: f))
+def healthz():
+    return jsonify(status="ok")
 
 # --- Misiones & Logros -------------------------------------------------------
 
@@ -344,7 +403,7 @@ def cipher_caesar(text, key, decrypt=False):
         result = ""
         for char in text:
             if 'a' <= char <= 'z':
-                result += chr((ord(char) - ord('a') + key_num) % 26 + ord('a'))
+                result += chr((ord(char) - ord('a') + key_nu/m) % 26 + ord('a'))
             elif 'A' <= char <= 'Z':
                 result += chr((ord(char) - ord('A') + key_num) % 26 + ord('A'))
             else:
